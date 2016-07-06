@@ -2,9 +2,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -59,6 +61,23 @@ public class Main {
 				a[i] = in.nextInt();
 			}
 			b = arr.f(a);
+			try {
+				FileWriter fout = new FileWriter("output.txt");
+				BufferedWriter buff = new BufferedWriter(fout);
+				for (int i = 0; i < b.length; i++) {
+					for (int j = 0; j < b[i].length; j++) {
+						System.out.print(b[i][j] + " ");
+					}
+					System.out.println();
+					buff.write(Arrays.toString(b[i]));
+
+				}
+				buff.flush();
+				buff.close();
+			} catch (IOException e) {
+				System.out.println("Error with file.");
+				System.out.println(e.getMessage());
+			}
 			break;
 		case 2:
 			b = new int[n][n];
@@ -67,23 +86,26 @@ public class Main {
 					b[i][j] = in.nextInt();
 				}
 			a = arr.f(b);
+			try {
+				FileWriter fout = new FileWriter("output.txt");
+				BufferedWriter buff = new BufferedWriter(fout);
+				buff.write(Arrays.toString(a));
+				buff.flush();
+				buff.close();
+
+			} catch (IOException e) {
+				System.out.println("Error with file.");
+				System.out.println(e.getMessage());
+			}
 			break;
 		}
 		if (b != null && a != null) {
 			System.out.println("1D Array : ");
 			for (int i = 0; i < a.length; i++) {
 				System.out.print(a[i] + " ");
-				// File fout = new File("out.txt");
-				// FileOutputStream fos = new FileOutputStream(fout);
-				// List<Integer> ar = new ArrayList<Integer>();
-				// BufferedWriter bw = new BufferedWriter(new
-				// OutputStreamWriter(fos));
-				// for (int c : a) {
-				// System.out.print(c);
-				// ar.add(c);
-				// bw.write(c);
+
 			}
-			// bw.close();
+
 		}
 		System.out.println();
 		System.out.println("2D Array : ");
